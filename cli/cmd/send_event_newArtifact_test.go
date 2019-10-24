@@ -75,7 +75,7 @@ func TestCheckImageAvailability(t *testing.T) {
 
 func TestCheckImageNonAvailability(t *testing.T) {
 
-	invalidImgs := []DockerImg{DockerImg{"keptnexamples/carts", "0.7.5"}, DockerImg{"docker.io/keptnexamples/carts:0.7.5", ""}}
+	invalidImgs := []DockerImg{DockerImg{"docker.io/keptnexamples/carts:0.7.5", ""}}
 
 	credentialmanager.MockAuthCreds = true
 	buf := new(bytes.Buffer)
