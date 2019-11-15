@@ -12,7 +12,7 @@
           <p
             v-if="traces[0].type === 'sh.keptn.event.problem.open'"
           >
-            <b>Problem detected:</b> {{traces[0].data.problemtitle}}
+            <b>Problem detected:</b> {{traces[0].data.ProblemTitle}}
           </p>
         </div>
 
@@ -88,6 +88,17 @@
                   <hr>
                   <small>
                     <b>Action: </b> {{ event.data.deploymentChanges | remediationAction }}
+                  </small>
+                </div>
+
+                <div v-if="event.type === 'sh.keptn.event.problem.open'">
+                  <hr>
+                  <small>
+                    <b>Problem: </b> {{ event.data.ProblemTitle }}
+                  </small>
+                  <br>
+                  <small>
+                    <b>Impacted entity: </b> {{ event.data.ImpactedEntity }}
                   </small>
                 </div>
                 <!-- EVENT SPECIFIC DETAILS -->
@@ -198,7 +209,7 @@ export default {
       const stages = [];
 
       traces.forEach((traceEvent) => {
-        if (traceEvent.data !== undefined && traceEvent.data.stage !== undefined) {
+        if (traceEvent.data !== undefined) {
           let stage = stages.find(stage => stage.stageName === traceEvent.data.stage);
           if (stage === undefined) {
             const newStage = {
